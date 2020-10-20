@@ -1,5 +1,7 @@
 // The main file
 const { checkCobc } = require('./lib/check')
+const { prepareInput } = require('./lib/input')
+const { run } = require('./lib/run')
 
 /**
  * The main API
@@ -8,9 +10,11 @@ const { checkCobc } = require('./lib/check')
  * @param {object} args extra argument to pass to the cboc
  * @return {promise}
  */
-function openCobol(strInput, args = {}) {
+function main(strInput, args = {}) {
   return checkCobc()
-    .then(() => {
-      
-    })
+    .then(() => prepareInput(strInput))
+    .then(cobolFile => run([cobolFile]))
 }
+
+
+module.exports = main

@@ -2,18 +2,28 @@
 // we run this manually for TBD
 
 const test = require('ava')
-const tmp = require('tmp')
+// const tmp = require('tmp')
+const main = require('../index')
 
-test(`Try to see if it actually able to pass the COBOL to the cboc`, t => {
-  const tmpobj = tmp.fileSync();
-  console.log('File: ', tmpobj.name);
-  console.log('Filedescriptor: ', tmpobj.fd);
+const helloCbl =
+`       IDENTIFICATION DIVISION.
+       PROGRAM-ID. HELLO.
+       ENVIRONMENT DIVISION.
+       DATA DIVISION.
+       PROCEDURE DIVISION.
+       PROGRAM-BEGIN.
+       DISPLAY "Hello world".
+       PROGRAM-DONE.
+       STOP RUN.
+`
 
-// If we don't need the file anymore we could manually call the removeCallback
-// But that is not necessary if we didn't pass the keep option because the library
-// will clean after itself.
-// tmpobj.removeCallback();
+test(`Try to see if it actually able to pass the COBOL to the cboc`, async t => {
 
-  t.pass()
+  const result = await main(helloCbl)
+
+  console.log(result)
+
+  t.truthy(result)
+
 
 })
