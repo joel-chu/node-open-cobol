@@ -1,7 +1,7 @@
 const test = require('ava')
 
 const { isWind, checkCobc } = require('../lib/check')
-const { getInput } = require('../lib/input')
+const { prepareInput } = require('../lib/input')
 
 
 // this test should only run here
@@ -18,10 +18,10 @@ test(`Check if this check method works correctly`, t => {
 test(`Testing the input with failed input`, async t => {
   // expect to fail
 
-  const error = await t.throwsAsync(getInput('/path/to/bullshit'))
+  const error = await t.throwsAsync(prepareInput('/path/to/bullshit'))
   t.truthy(error)
 
 
-  const error1 = await t.throwsAsync(getInput({}))
+  const error1 = await t.throwsAsync(prepareInput({}))
   t.truthy(error1)
 })
