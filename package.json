@@ -4,7 +4,8 @@
   "description": "A node wrapper method to pass COBOL code to open-cobol (Linux)",
   "main": "index.js",
   "scripts": {
-    "test": "ava"
+    "test": "ava",
+    "tbd": "ava ./tests/manual.t.js"
   },
   "repository": {
     "type": "git",
