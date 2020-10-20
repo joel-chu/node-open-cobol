@@ -26,5 +26,27 @@
   "homepage": "https://github.com/joel-chu/node-open-cobol#readme",
   "devDependencies": {
     "ava": "^3.13.0"
+  },
+  "dependencies": {
+    "which": "^2.0.2",
+    "yargs": "^16.1.0"
+  },
+  "ava": {
+    "files": [
+      "tests/**/*.test.js"
+    ],
+    "ignoredByWatcher": [
+      "tests/fixtures/**/*",
+      "lib/**/*"
+    ],
+    "verbose": true,
+    "tap": false,
+    "failFast": true
+  },
+  "bin": {
+    "nodecobc": "./cli.js"
+  },
+  "engines": {
+    "node": ">=8.0.0"
   }
 }
