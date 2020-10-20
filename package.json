@@ -1,0 +1,30 @@
+{
+  "name": "open-cobol",
+  "version": "0.0.1",
+  "description": "A node wrapper method to pass COBOL code to open-cobol (Linux)",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joel-chu/node-open-cobol.git"
+  },
+  "keywords": [
+    "COBOL",
+    "node",
+    "node.js",
+    "open-cobol",
+    "linux",
+    "docker"
+  ],
+  "author": "Joel Chu <joelchu@foxmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joel-chu/node-open-cobol/issues"
+  },
+  "homepage": "https://github.com/joel-chu/node-open-cobol#readme",
+  "devDependencies": {
+    "ava": "^3.13.0"
+  }
+}
