@@ -1,5 +1,6 @@
 const test = require('ava')
 
+const { helloCbl } = require('./fixtures/data')
 const { isWind, checkCobc } = require('../lib/check')
 const { prepareInput } = require('../lib/input')
 
@@ -24,4 +25,12 @@ test(`Testing the input with failed input`, async t => {
 
   const error1 = await t.throwsAsync(prepareInput({}))
   t.truthy(error1)
+})
+
+
+test(`test the prepareInput with text input`, async t => {
+
+  const result = await prepareInput(helloCbl)
+
+  t.true(Array.isArray(result))
 })
