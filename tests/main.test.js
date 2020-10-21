@@ -1,7 +1,8 @@
 const test = require('ava')
 
-const { helloCbl } = require('./fixtures/data')
 const { isWind, checkCobc } = require('../lib/check')
+
+const { helloCbl } = require('./fixtures/data')
 const { prepareInput } = require('../lib/input')
 
 
