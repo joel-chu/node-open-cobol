@@ -28,7 +28,7 @@ test.skip(`Test COBOL code input end to end`, async t => {
   t.is(result.trim(), 'Hello world')
 })
 
-test(`Test COBOL file end to end`, async t => {
+test.skip(`Test COBOL file end to end`, async t => {
   const { resolve, join } = path
   const pathToFile = resolve(join('tests', 'fixtures', 'args.cbl'))
 
