@@ -5,6 +5,8 @@ const test = require('ava')
 // const tmp = require('tmp')
 const main = require('../index')
 
+const { prepareInput } = require('../lib/input')
+
 const helloCbl =
 `       IDENTIFICATION DIVISION.
        PROGRAM-ID. HELLO.
@@ -19,11 +21,10 @@ const helloCbl =
 
 test(`Try to see if it actually able to pass the COBOL to the cboc`, async t => {
 
-  const result = await main(helloCbl)
+  const result = await prepareInput(helloCbl)
 
   console.log(result)
 
-  t.truthy(result)
-
+  t.true(Array.isArray(result))
 
 })
