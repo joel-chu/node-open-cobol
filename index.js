@@ -13,8 +13,8 @@ const { run } = require('./lib/run')
 function main(strInput, args = {}) {
   return checkCobc()
     .then(() => prepareInput(strInput))
-    .then(cobolFile => run([cobolFile]))
+    // first run is to tell cobc to compile it to a binary
+    .then(run)
 }
-
 
 module.exports = main
