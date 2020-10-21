@@ -15,4 +15,8 @@ app.use(async ctx => {
   console.log(ctx.body)
 })
 
-app.listen(port)
+if (require.main === module) {
+  app.listen(port)
+}
+// also export it 
+module.exports = app
