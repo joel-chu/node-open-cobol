@@ -5,13 +5,14 @@
   "main": "index.js",
   "files": [
     "lib",
-    "index.js"
+    "index.js",
     "cli.js",
     "Dockerfile"
   ],
   "scripts": {
     "test": "ava",
-    "tbd": "ava ./tests/manual.test.js"
+    "tbd": "ava ./tests/manual.test.js",
+    "http": "node ./http.js"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,8 @@
     "ava": "^3.13.0"
   },
   "dependencies": {
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
     "tmp": "^0.2.1",
     "which": "^2.0.2",
     "yargs": "^16.1.0"
