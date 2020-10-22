@@ -11,8 +11,9 @@
   ],
   "scripts": {
     "test": "ava",
+    "start": "node ./http.js",
     "tbd": "ava ./tests/manual.test.js",
-    "http": "node ./http.js"
+    "http": "ava ./tests/http.test.js"
   },
   "repository": {
     "type": "git",
@@ -33,7 +34,8 @@
   },
   "homepage": "https://github.com/joel-chu/node-open-cobol#readme",
   "devDependencies": {
-    "ava": "^3.13.0"
+    "ava": "^3.13.0",
+    "superkoa": "^1.0.3"
   },
   "dependencies": {
     "koa": "^2.13.0",
