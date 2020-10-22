@@ -4,9 +4,19 @@ This is a wrapper method to pass COBOL code to `open-cobol` (on Linux) using nod
 
 It's inspired by [node-cobol](https://github.com/IonicaBizau/node-cobol).
 
-## Example
+## Installation
 
-The API accept two parameters,
+```
+$ npm install open-cobol
+```
+
+## Usage
+
+There are several ways to use this module, explain in detail in the following sections.
+
+## Use as node module
+
+The API accept two parameters:
 
 * string input - it can be COBOL code or a path to a `.cbl` file contain the COBOL code
 * options - currently only expecting one key `args` (or just pass nothing) this contain array of values that will pass to the COBOL code, if you require to pass values to your code.
@@ -56,9 +66,39 @@ openCobol('hello.cbl')
 
 ```
 
----
+## HTTP interface
 
-Coming next an HTTP interface, and a Dockerized version
+You can use it as a module
+
+```js
+const openCobolHttp = require('open-cobol/http')
+// the underlying application is using Koa
+openCobolHttp.listen(8080)
+// this will start up the HTTP server on port 8080
+// then you an post your code to it
+```
+
+It's expecting you to using `POST` using `json` header
+with the following keys
+
+* cbl (string) - the actual COBOL code
+* args (array<any>) - any argument you want to pass to your COBOL code  
+
+Another way is to clone this repository, then execute within the root folder
+
+```sh
+$ npm start
+```
+
+It will start the server on port `3001`
+
+Or you can pass an `PORT` variable to change the port
+
+```sh
+$ PORT=8080 npm start
+```
+
+Then the server will run on port `8080`
 
 ---
 

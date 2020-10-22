@@ -6,7 +6,7 @@
   "files": [
     "lib",
     "index.js",
-    "cli.js",
+    "http.js",
     "Dockerfile"
   ],
   "scripts": {
