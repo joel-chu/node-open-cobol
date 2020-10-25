@@ -1,7 +1,7 @@
 #! /usr/local/bin/node
 // The command line interface
 const yargs = require('yargs')
-const { checkCobc } = require('./lib/check')
+const openCobol = require('./index')
 
 // the original node-cobol accept command line input but it really is bs
 // what we want is to able to take all the ARGV then run an interactive

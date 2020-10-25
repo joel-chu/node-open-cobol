@@ -113,7 +113,7 @@ $ cd node-open-cobol
 
 First build it:
 
-**PLEASE REPLACE the <your-user-name> and <container-name> with yours**
+**PLEASE REPLACE the <your-user-name> and &lt;container-name&gt; with yours**
 
 ```sh
 $ docker build -t <your-user-name>/<container-name> .
@@ -125,13 +125,13 @@ Or build the Chinese source version
 $ docker build -t <your-user-name>/<container-name> -f Dockerfile-cn .
 ```
 
-Then run it (replace the **<port-you-want>** with yours)
+Then run it (replace the **&lt;port-you-want&gt;** with yours)
 
 ```sh
 $ docker run -p <port-you-want>:3001 -d <your-user-name>/<container-name>  
 ```
 
-Then you can just use it as an HTTP interface as explained above. 
+Then you can just use it as an HTTP interface as explained above.
 
 ---
 
