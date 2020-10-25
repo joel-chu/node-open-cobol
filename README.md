@@ -113,7 +113,7 @@ $ cd node-open-cobol
 
 First build it:
 
-**PLEASE REPLACE the <your-user-name> and &lt;container-name&gt; with yours**
+**PLEASE REPLACE the &lt;your-user-name%gt; and &lt;container-name&gt; with yours**
 
 ```sh
 $ docker build -t <your-user-name>/<container-name> .
