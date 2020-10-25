@@ -3,6 +3,11 @@ const test = require('ava')
 const { spawn } = require('child_process')
 const request = require('@to1source/request')
 
+const { helloCbl } = require('./fixtures/data')
+/*
+ * There is a timing issue here, the before call is not finish and then the test already started!
+ * 
+ */
 test.before(async t => {
 	console.info(`RUN BEFORE TEST START`)
 	// note this will not be working on another machine, unless they have done the exact same setup 
@@ -20,8 +25,11 @@ test.before(async t => {
 	p1.on('close', code => {
 		console.info(`Spawn call ended with `, code)
 	})
+	p1.on('error', err => {
+		console.error(`Spawn process error`, err)
+	})
 })
-
+/*
 test.after(async t => {
 	console.info(`RUN AFTER TEST END`, t.context.id)
 	
@@ -38,13 +46,14 @@ test.after(async t => {
 	})
 	
 })
+*/
 
-
-test(`The main test to submit a helloWorld to the open-cobol inside the Docker via HTTP`, async t => {
+test.serial(`The main test to submit a helloWorld to the open-cobol inside the Docker via HTTP`, async t => {
 		
+	const result = await request.post('http://localhost:49160', {cbl: helloCbl})
 	
-		
-		
-		t.is(true, true)
+	console.info(`HelloWorld result`, result)
+	
+	t.truthy(result)
 
 })
