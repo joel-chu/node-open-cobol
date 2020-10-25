@@ -1,19 +1,21 @@
 {
   "name": "open-cobol",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A node wrapper method to run COBOL code with open-cobol (Linux)",
   "main": "index.js",
   "files": [
     "lib",
     "index.js",
     "http.js",
-    "Dockerfile"
+    "Dockerfile",
+    "Dockerfile-cn"
   ],
   "scripts": {
     "test": "ava",
     "start": "node ./http.js",
     "tbd": "ava ./tests/manual.test.js",
-    "http": "ava ./tests/http.test.js"
+    "http": "ava ./tests/http.test.js",
+    "d": "ava ./tests/docker.test.js"
   },
   "repository": {
     "type": "git",
