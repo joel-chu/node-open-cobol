@@ -100,6 +100,39 @@ $ PORT=8080 npm start
 
 Then the server will run on port `8080`
 
+## Docker
+
+There are two docker file within this repository, one standard `Dockerfile` and another one `Dockerfile-cn` using Tsinghua University deb source.
+
+First clone this repository
+
+```sh
+$ git clone https://github.com/joel-chu/node-open-cobol.git
+$ cd node-open-cobol
+```
+
+First build it:
+
+**PLEASE REPLACE the <your-user-name> and <container-name> with yours**
+
+```sh
+$ docker build -t <your-user-name>/<container-name> .
+```
+
+Or build the Chinese source version
+
+```sh
+$ docker build -t <your-user-name>/<container-name> -f Dockerfile-cn .
+```
+
+Then run it (replace the **<port-you-want>** with yours)
+
+```sh
+$ docker run -p <port-you-want>:3001 -d <your-user-name>/<container-name>  
+```
+
+Then you can just use it as an HTTP interface as explained above. 
+
 ---
 
 MIT
