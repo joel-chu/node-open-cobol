@@ -1,5 +1,9 @@
 #!/usr/bin/env node
-// The command line interface
+/** 
+ * The command line interface
+ * This is kind of pointless since the open-cobol runs from command line 
+ * Instead this CLI program should call the Docker version, then it will be useful 
+ */
 
 const fs = require('fs')
 const { resolve } = require('path')
@@ -32,7 +36,9 @@ const cli = meow(`
     }
 })
 
-let _options = {}
+// @TODO pass the use docker options 
+let _options = {docker: true}
+// run
 if (cli.input && cli.input[0] && fs.existsSync(resolve(cli.input[0]))) {
   
   const { params, opts } = cli.flags
