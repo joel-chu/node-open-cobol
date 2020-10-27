@@ -1,32 +1,59 @@
 #!/usr/bin/env node
 // The command line interface
 
+const fs = require('fs')
+const { resolve } = require('path')
+const meow = require('meow')
+
 const openCobol = require('./index')
 
-// the original node-cobol accept command line input but it really is bs
-// what we want is to able to take all the ARGV then run an interactive
-// session to accept user input before we execute it
-// so this part will be more complex
+const cli = meow(`
+    Usage
+      $ nodecobc <input>
+ 
+    Options
+      --params, -p  Supply argument
 
-const { argv } = require('yargs')
+      --opts, -o  Options
+ 
+    Examples
+      $ nodecobc /path/to/cobol-file.cbl --params a --params b 
+`, {
+    flags: {
+        params: {
+          isMultiple: true,
+          type: 'string',
+          alias: 'p'
+        },
+        opts: {
+          type: 'string',
+          alias: 'o'
+        }
+    }
+})
+
+let _options = {}
+if (cli.input && cli.input[0] && fs.existsSync(resolve(cli.input[0]))) {
+  
+  const { params, opts } = cli.flags
+     
+  if (params) {
+    _options = Object.assign(options, {args: params})
+  }
+  if (opts) {
+    _options = Object.assign(options, { options: opts })
+  }
+  // run it
+  (async () => {
+    try {
+      const result = await openCobol(cli.input[0], _options)
+      console.info(result)
+    } catch(e) {
+      console.error('nodecobc error:', e)
+    }
+  })()
+} else {
+  console.error(`File path required!`)
+}
 
 
-console.log(argv)
-
-/*
-require('yargs')
-  .scriptName("nodecobc")
-  .usage('$0 <cmd> [args]')
-  .command('nodecobc [file]', 'Please provide path to your COBOL file', (yargs) => {
-    yargs.positional('file', {
-      type: 'string',
-      default: null,
-      describe: 'The path to the COBOL source (.cbl) file'
-    })
-  }, function (argv) {
-    
-    console.log('argv', argv)
-  })
-  .help()
-  .argv
-*/
