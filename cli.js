@@ -8,17 +8,25 @@ const openCobol = require('./index')
 // session to accept user input before we execute it
 // so this part will be more complex
 
+const { argv } = require('yargs')
+
+
+console.log(argv)
+
+/*
 require('yargs')
   .scriptName("nodecobc")
   .usage('$0 <cmd> [args]')
-  .command('hello [name]', 'welcome ter yargs!', (yargs) => {
-    yargs.positional('name', {
+  .command('nodecobc [file]', 'Please provide path to your COBOL file', (yargs) => {
+    yargs.positional('file', {
       type: 'string',
       default: null,
       describe: 'The path to the COBOL source (.cbl) file'
     })
   }, function (argv) {
-    console.log('hello', argv.name, 'welcome to yargs!')
+    
+    console.log('argv', argv)
   })
   .help()
   .argv
+*/
