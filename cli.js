@@ -14,8 +14,8 @@ require('yargs')
   .command('hello [name]', 'welcome ter yargs!', (yargs) => {
     yargs.positional('name', {
       type: 'string',
-      default: 'Cambi',
-      describe: 'the name to say hello to'
+      default: null,
+      describe: 'The path to the COBOL source (.cbl) file'
     })
   }, function (argv) {
     console.log('hello', argv.name, 'welcome to yargs!')
