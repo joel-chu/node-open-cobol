@@ -1,6 +1,6 @@
 {
   "name": "open-cobol",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A node wrapper method to run COBOL code with open-cobol (Linux)",
   "main": "index.js",
   "files": [
@@ -15,7 +15,8 @@
     "start": "node ./http.js",
     "tbd": "ava ./tests/manual.test.js",
     "http": "ava ./tests/http.test.js",
-    "d": "ava ./tests/docker.test.js"
+    "d": "ava ./tests/docker.test.js",
+    "c": "node ./cli.js"
   },
   "repository": {
     "type": "git",
@@ -43,9 +44,9 @@
   "dependencies": {
     "koa": "^2.13.0",
     "koa-bodyparser": "^4.3.0",
+    "meow": "^7.1.1",
     "tmp": "^0.2.1",
-    "which": "^2.0.2",
-    "yargs": "^16.1.0"
+    "which": "^2.0.2"
   },
   "ava": {
     "files": [
