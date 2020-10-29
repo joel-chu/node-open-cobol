@@ -13,8 +13,9 @@
   "scripts": {
     "test": "ava",
     "start": "node ./http.js",
-    "tbd": "ava ./tests/manual.test.js",
-    "http": "ava ./tests/http.test.js",
+    "t:t": "ava ./tests/manual.test.js",
+    "t:h": "ava ./tests/http.test.js",
+    "t:u": "ava ./tests/util.test.js",
     "d": "ava ./tests/docker.test.js",
     "c": "node ./cli.js"
   },
