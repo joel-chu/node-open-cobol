@@ -16,6 +16,8 @@ const cli = meow(`
       $ nodecobc <input>
  
     Options
+      --keep -k will output the compiled binary to the path you provide via this flag
+    
       --params, -p  Supply argument
 
       --opts, -o  Options
@@ -36,19 +38,34 @@ const cli = meow(`
     }
 })
 
+function checkExist(p) {
+  return fs.existsSync(resolve(p))
+}
+
+
 // @TODO pass the use docker options 
 let _options = {docker: true}
 // run
-if (cli.input && cli.input[0] && fs.existsSync(resolve(cli.input[0]))) {
+if (cli.input && cli.input[0] && checkExist(cli.input[0])) {
   
-  const { params, opts } = cli.flags
-     
+  const { params, opts, keep } = cli.flags
+  // expecting a path to the directory, therefore need to check if it exists or not
+  if (keep) {
+    if (!checkExist(keep)) {
+      console.error(`Expect the keep flag to provide a directory that exist!`)
+      process.exit(1)
+    }
+    _options = Object.assign(options, { keep })
+  }
+  
   if (params) {
     _options = Object.assign(options, {args: params})
   }
+  
   if (opts) {
     _options = Object.assign(options, { options: opts })
   }
+  
   // run it
   (async () => {
     try {
