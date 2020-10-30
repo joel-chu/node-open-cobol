@@ -10,13 +10,16 @@ const { resolve } = require('path')
 const meow = require('meow')
 
 const openCobol = require('./index')
+const { CN_SUFFIX } = require('./lib/constants')
 
 const cli = meow(`
     Usage
       $ nodecobc <input>
  
     Options
-      --keep -k will output the compiled binary to the path you provide via this flag
+      --keep -k will output the compiled binary to the path you provided 
+    
+      --cn -c use the CN version of the docker image
     
       --params, -p  Supply argument
 
@@ -48,7 +51,7 @@ let _options = {docker: true}
 // run
 if (cli.input && cli.input[0] && checkExist(cli.input[0])) {
   
-  const { params, opts, keep } = cli.flags
+  const { params, opts, keep, cn } = cli.flags
   // expecting a path to the directory, therefore need to check if it exists or not
   if (keep) {
     if (!checkExist(keep)) {
@@ -57,15 +60,15 @@ if (cli.input && cli.input[0] && checkExist(cli.input[0])) {
     }
     _options = Object.assign(options, { keep })
   }
-  
+  if (cn) {
+    _options.docker = CN_SUFFIX
+  }
   if (params) {
     _options = Object.assign(options, {args: params})
   }
-  
   if (opts) {
     _options = Object.assign(options, { options: opts })
   }
-  
   // run it
   (async () => {
     try {
