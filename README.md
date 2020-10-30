@@ -135,6 +135,37 @@ Then you can just use it as an HTTP interface as explained above.
 
 ---
 
+@TODO 
+
+## Using the cli 
+
+This cli is going to run a docker container in case you do not have the `open-cobol` install on your system.
+
+To run this cli require several setup:
+
+1. Have docker installed on your system
+2. Configure docker to run without sudo 
+3. You have pull the image we created for this application `joeljiezhu/ubuntu-node-open-cobol` or the CN source `joeljiezhu/ubuntu-node-open-cobol-cn`
+
+In the background it will run the following
+
+```
+$ docker run --name ubuntu-node-open-cobol-container -it joeljiezhu/ubuntu-node-open-cobol 
+
+```
+
+The above command is the basic version which actually run a HTTP interface to accept your COBOL code.
+
+You could also pass a `--keep=/path/on/your-system` when you run the cli. And it will run as follow:
+
+```sh
+$ docker run --name ubuntu-node-open-cobol-container -it -v /path/on/your-system:/home/app/data:rw joeljiezhu/ubuntu-node-open-cobol  
+```
+
+Then it will save the compiled code onto `/path/on/your-system` and you can run it afterward (or provide the code to access other resources on your system)
+
+---
+
 MIT
 
 Joel Chu (2020)
