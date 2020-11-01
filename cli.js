@@ -10,7 +10,7 @@ const { resolve } = require('path')
 const meow = require('meow')
 
 const openCobol = require('./index')
-const { CN_SUFFIX } = require('./lib/constants')
+const { CN_SUFFIX, APP_PATH } = require('./lib/constants')
 
 const cli = meow(`
     Usage
