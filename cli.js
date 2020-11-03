@@ -9,70 +9,64 @@ const fs = require('fs')
 const { resolve } = require('path')
 const meow = require('meow')
 
-const openCobol = require('./index')
-const { CN_SUFFIX, APP_PATH } = require('./lib/constants')
+const request = require('@to1source/request')
+const { CN_SUFFIX, APP_PATH, ARG } = require('./lib/constants')
+const { checkExist, readCblFile } = require('./lib/input')
+
 
 const cli = meow(`
     Usage
       $ nodecobc <input>
  
     Options
-      --keep -k will output the compiled binary to the path you provided 
+      --port -p the port that map to the docker image 
     
-      --cn -c use the CN version of the docker image
-    
-      --params, -p  Supply argument
-
-      --opts, -o  Options
+      --args -a (optional) Supply argument
  
     Examples
-      $ nodecobc /path/to/cobol-file.cbl --params a --params b 
+      $ nodecobc /path/to/cobol-file.cbl --port 40196 --args argument1 --args argument2 
 `, {
     flags: {
-        params: {
+        args: {
           isMultiple: true,
           type: 'string',
-          alias: 'p'
+          alias: 'a'
         },
-        opts: {
+        port: {
           type: 'string',
-          alias: 'o'
+          alias: 'p'
         }
     }
 })
 
-function checkExist(p) {
-  return fs.existsSync(resolve(p))
-}
-
-
-// @TODO pass the use docker options 
-let _options = {docker: true}
 // run
+
+let _options = {}
+
 if (cli.input && cli.input[0] && checkExist(cli.input[0])) {
   
-  const { params, opts, keep, cn } = cli.flags
-  // expecting a path to the directory, therefore need to check if it exists or not
-  if (keep) {
-    if (!checkExist(keep)) {
-      console.error(`Expect the keep flag to provide a directory that exist!`)
-      process.exit(1)
-    }
-    _options = Object.assign(options, { keep })
+  const { port, args } = cli.flags
+
+  if (!port) {
+    console.error(`Port must be provided!`)
+    process.exit(1)
   }
-  if (cn) {
-    _options.docker = CN_SUFFIX
+
+  if (args) {
+    _options = Object.assign(_options, { args })
   }
-  if (params) {
-    _options = Object.assign(options, {args: params})
-  }
-  if (opts) {
-    _options = Object.assign(options, { options: opts })
-  }
+
   // run it
   (async () => {
     try {
-      const result = await openCobol(cli.input[0], _options)
+      // const result = await openCobol(cli.input[0], _options)
+      // we just read the file and post it to the docker image
+      const cblCode = await readCblFile(cli.input[0])
+      // we only do the localhost for the time being @TODO add new flag? 
+      const url = [HOSTNAME, port].join(':')
+      
+      const result = await request(url).post({[ARG]: cblCode})
+      
       console.info(result)
     } catch(e) {
       console.error('nodecobc error:', e)

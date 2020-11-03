@@ -38,7 +38,6 @@
   },
   "homepage": "https://github.com/joel-chu/node-open-cobol#readme",
   "devDependencies": {
-    "@to1source/request": "^0.9.4",
     "ava": "^3.13.0",
     "superkoa": "^1.0.3"
   },
@@ -47,7 +46,8 @@
     "koa-bodyparser": "^4.3.0",
     "meow": "^7.1.1",
     "tmp": "^0.2.1",
-    "which": "^2.0.2"
+    "which": "^2.0.2",
+    "@to1source/request": "^0.9.4"
   },
   "ava": {
     "files": [
