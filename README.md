@@ -171,9 +171,11 @@ Complete example with everything
 $ docker run -d
              --name whatever-name-you-want
              -v /path/on/your/system:/home/app/data:rw 
-             -p 45678:3001 
+             -p 43001:3001 
              joeljiezhu/ubuntu-node-open-cobol
 ```
+
+Then just post to `http://localhost:43001`
 
 ---
 
