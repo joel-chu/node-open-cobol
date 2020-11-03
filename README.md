@@ -159,10 +159,21 @@ The above command is the basic version which actually run a HTTP interface to ac
 You could also pass a `--keep=/path/on/your-system` when you run the cli. And it will run as follow:
 
 ```sh
-$ docker run --name ubuntu-node-open-cobol-container -it -v /path/on/your-system:/home/app/data:rw joeljiezhu/ubuntu-node-open-cobol  
+$ docker run --name ubuntu-node-open-cobol-container -d -v /path/on/your-system:/home/app/data:rw joeljiezhu/ubuntu-node-open-cobol  
 ```
 
 Then it will save the compiled code onto `/path/on/your-system` and you can run it afterward (or provide the code to access other resources on your system)
+
+
+Complete example with everything 
+
+```sh
+$ docker run -d
+             --name whatever-name-you-want
+             -v /path/on/your/system:/home/app/data:rw 
+             -p 45678:3001 
+             joeljiezhu/ubuntu-node-open-cobol
+```
 
 ---
 
