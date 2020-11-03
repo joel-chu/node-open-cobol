@@ -9,7 +9,7 @@ const fs = require('fs')
 const meow = require('meow')
 
 const request = require('@to1source/request')
-const { CN_SUFFIX, APP_PATH, ARG } = require('./lib/constants')
+const { CN_SUFFIX, APP_PATH, ARG, DEFAULT_PORT } = require('./lib/constants')
 const { checkExist, readCblFile } = require('./lib/input')
 
 
@@ -33,7 +33,8 @@ const cli = meow(`
         },
         port: {
           type: 'string',
-          alias: 'p'
+          alias: 'p',
+          default: DEFAULT_PORT 
         }
     }
 })
