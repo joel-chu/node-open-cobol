@@ -19,9 +19,7 @@ app.use(async ctx => {
 
   const result = await openCobol(json[name], params)
 
-  // console.log('RESULT', result)
   ctx.body = { result }
-
 })
 
 if (require.main === module) {

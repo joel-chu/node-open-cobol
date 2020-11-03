@@ -49,9 +49,9 @@ test.after(async t => {
 })
 */
 
-test.skip(`The main test to submit a helloWorld to the open-cobol inside the Docker via HTTP`, async t => {
+test(`The main test to submit a helloWorld to the open-cobol inside the Docker via HTTP`, async t => {
 
-	const result = await request.post('http://localhost:49160', {cbl: helloCbl})
+	const result = await request.post('http://localhost:3001', {cbl: helloCbl})
 
 	console.info(`HelloWorld result`, result)
 
