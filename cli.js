@@ -6,7 +6,6 @@
  */
 
 const fs = require('fs')
-const { resolve } = require('path')
 const meow = require('meow')
 
 const request = require('@to1source/request')
