@@ -32,7 +32,7 @@ const cli = meow(`
           alias: 'a'
         },
         port: {
-          type: 'string',
+          type: 'number',
           alias: 'p',
           default: DEFAULT_PORT 
         }
@@ -59,12 +59,16 @@ if (cli.input && cli.input[0] && checkExist(cli.input[0])) {
   // run it
   (async () => {
     try {
-      // const result = await openCobol(cli.input[0], _options)
-      // we just read the file and post it to the docker image
+      
       const cblCode = await readCblFile(cli.input[0])
+
+      console.info(`got COBOL code`)
+
       // we only do the localhost for the time being @TODO add new flag? 
       const url = [HOSTNAME, port].join(':')
       
+      console.info(`Post it to ${url}`)
+
       const result = await request(url).post({[ARG]: cblCode})
       
       console.info(result)

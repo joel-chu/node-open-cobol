@@ -17,9 +17,12 @@ app.use(async ctx => {
 
   let params = {[ARG]: json[ARG], [OPT]: json[OPT]}
 
+  // console.info('params', params)
+
   const result = await openCobol(json[name], params)
 
-  // console.log('RESULT', result)
+  // console.info('RESULT', result)
+  
   ctx.body = { result }
 
 })
