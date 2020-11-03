@@ -27,8 +27,9 @@ COPY ./index.js ./
 COPY ./http.js ./
 # https://stackoverflow.com/questions/28599571/add-or-copy-a-folder-in-docker
 COPY lib/ /home/app/lib
-
-RUN npm install
+# Don't want to run the npm install everytime when rebuild image
+COPY node_modules/ /home/app/node_modules
+#  RUN npm install
 
 EXPOSE 3001
 # Run the HTTP interface
