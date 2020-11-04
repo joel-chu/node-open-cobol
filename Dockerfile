@@ -23,8 +23,9 @@ COPY ./package.json ./
 COPY ./index.js ./
 COPY ./http.js ./
 COPY lib/ /home/app/lib
+COPY node_modules/ /home/app/node_modules
 
-RUN npm install
+# RUN npm install
 
 EXPOSE 3001
 # Run the HTTP interface

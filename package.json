@@ -1,6 +1,6 @@
 {
   "name": "open-cobol",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "A node wrapper method to run COBOL code with open-cobol (Linux)",
   "main": "index.js",
   "files": [
