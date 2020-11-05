@@ -102,48 +102,32 @@ Then the server will run on port `8080`
 
 ## Docker
 
-There are two docker file within this repository, one standard `Dockerfile` and another one `Dockerfile-cn` using Tsinghua University deb source.
+The quickest way is to pull our docker images 
 
-First clone this repository
-
-```sh
-$ git clone https://github.com/joel-chu/node-open-cobol.git
-$ cd node-open-cobol
-```
-
-First build it:
-
-**PLEASE REPLACE the &lt;your-user-name&gt; and &lt;container-name&gt; (&lt;tag&gt; if any) with yours**
-
-```sh
-$ docker build -t <your-user-name>/<container-name>/<tag> .
-```
-
-If you have issue with the internal Docker DNS, you can try this:
-
-```sh
-$ docker build --network host -t <your-user-name>/<container-name>/<tag> .
+### For x86 
 
 ```
-
-
-Or build the Chinese source version
-
-```sh
-$ docker build -t <your-user-name>/<container-name>/<tag> -f Dockerfile-cn .
+$ docker pull joelchu/ubuntu-node-open-cobol 
 ```
 
-Then run it (replace the **&lt;port-you-want&gt;** with yours)
+Then just run it 
 
-```sh
-$ docker run -p <port-you-want>:3001 -d <your-user-name>/<container-name>  
+```
+$ docker run -d -p 3001:3001 -v /path/to/where/you/want:/home/app/data:rw joelchu/ubuntu-node-open-cobol 
 ```
 
-Then you can just use it as an HTTP interface as explained above.
+This will run the `node-open-cobol` in http mode. Then just submit your COBOL code to `http://localhost:3001`, also the compiled COBOL code will be in the `/path/to/where/you/want` folder.
 
----
+### For ARM 
 
-@TODO
+There are two more images for ARM platform (They were build on Raspberry pi 4b) 
+
+* joeljiezhu/ubuntu-node-open-cobol 
+* joeljiezhu/ubuntu-node-open-cobol-cn (this one with source.list from Tsinghua University)
+
+
+And finally, you can clone this repo and build it yourself. There are `Dockerfile` and `Dockerfile-cn` on the root level of this repo. 
+
 
 ## Using the cli
 
@@ -156,30 +140,19 @@ $ npm i node-open-cobol -g
 
 Then you will get a `nodecobc` command
 
-
-
-The above command is the basic version which actually run a HTTP interface to accept your COBOL code.
-
-You could also pass a `--keep=/path/on/your-system` when you run the cli. And it will run as follow:
+First start up your `node-open-cobol/http` interface, or run the docker image, then:
 
 ```sh
-$ docker run --name ubuntu-node-open-cobol-container -d -v /path/on/your-system:/home/app/data:rw joeljiezhu/ubuntu-node-open-cobol  
+$ nodecobc /path/to/your/file.cbl
 ```
 
-Then it will save the compiled code onto `/path/on/your-system` and you can run it afterward (or provide the code to access other resources on your system)
-
-
-Complete example with everything
+If you have change the port (default is 3001) then you can 
 
 ```sh
-$ docker run -d
-             --name whatever-name-you-want
-             -v /path/on/your/system:/home/app/data:rw
-             -p 43001:3001
-             joeljiezhu/ubuntu-node-open-cobol
+$ nodecobc /path/to/your/file.cbl -p 12345
 ```
 
-Then just post to `http://localhost:43001`
+You can also type `nodecobc --help` to learn more 
 
 ---
 
